@@ -8,6 +8,7 @@ public class Band {
 	
 	private String name;
 	private String recordLabel;
+	private MusicFestival[] festivals;
 	
 	public String getName() {
 		return name;
@@ -20,5 +21,11 @@ public class Band {
 	}
 	public void setRecordLabel(String recordLabel) {
 		this.recordLabel = recordLabel;
+	}
+	public MusicFestival[] getFestivals() {
+		return festivals;
+	}
+	public void setFestivals(MusicFestival[] festivals) {
+		this.festivals = festivals;
 	}
 }

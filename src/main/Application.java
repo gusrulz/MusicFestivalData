@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Application {
 	public static MusicFestival[] _musicFestivals;
+	public static RecordLabel[] _recordLabels;
 	
 	public static void main(String[] arguments) {
 		String json = ConnectionHelper.getResponse("http://eacodingtest.digital.energyaustralia.com.au/api/v1/festivals");
