@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
@@ -58,19 +59,58 @@ public class MusicFestivalTest {
 		MusicFestival omegaFestival = new MusicFestival();
 		omegaFestival.setName("Omega Festival");
 		
-		Band[] label1Bands = {bandX, bandY};
+		ArrayList<Band> label1Bands = new ArrayList<Band>(); 
+		label1Bands.add(bandX);
+		label1Bands.add(bandY);
 		label1.setBands(label1Bands);
 		
-		Band[] label2Bands = {bandA};
+		ArrayList<Band> label2Bands = new ArrayList<Band>();
+		label2Bands.add(bandA);
 		label2.setBands(label2Bands);
 		
-		MusicFestival[] bandXFestivals = {omegaFestival};
+		ArrayList<MusicFestival> bandXFestivals = new ArrayList<MusicFestival>(); 
+		bandXFestivals.add(omegaFestival);
 		bandX.setFestivals(bandXFestivals);
 		
-		MusicFestival[] bandAFestivals = {alphaFestival, betaFestival};
+		ArrayList<MusicFestival> bandAFestivals = new ArrayList<MusicFestival>(); 
+		bandAFestivals.add(alphaFestival);
+		bandAFestivals.add(betaFestival);
 		bandA.setFestivals(bandAFestivals);
 		
 		String output = ViewHelper.buildDisplay(labels);
 		Assert.assertEquals(EXPECTED, output);
+	}
+	
+	@Test
+	public void parseRecordLabelTest() {
+		Band bandA = new Band();
+		bandA.setName("Band A");
+		bandA.setRecordLabel("Record Label 2");
+		Band bandX = new Band();
+		bandX.setName("Band X");
+		bandX.setRecordLabel("Record Label 1");
+		Band bandY = new Band();
+		bandY.setName("Band Y");
+		bandY.setRecordLabel("Record Label 1");
+		
+		MusicFestival alphaFestival = new MusicFestival();
+		alphaFestival.setName("Alpha Festival");
+		alphaFestival.setBands(new ArrayList<Band>());
+		alphaFestival.getBands().add(bandA);
+		MusicFestival betaFestival = new MusicFestival();
+		betaFestival.setName("Beta Festival");
+		betaFestival.setBands(new ArrayList<Band>());
+		betaFestival.getBands().add(bandA);
+		MusicFestival omegaFestival = new MusicFestival();
+		omegaFestival.setName("Omega Festival");
+		omegaFestival.setBands(new ArrayList<Band>());
+		omegaFestival.getBands().add(bandX);
+		
+		MusicFestival[] festivals = {alphaFestival, betaFestival, omegaFestival};
+		RecordLabel[] recordLabels = JsonHelper.parseRecordLabels(festivals);
+		
+		Assert.assertEquals(2, recordLabels.length);
+		Assert.assertNotNull(recordLabels[0].getBands());
+		Assert.assertNotNull(recordLabels[0].getBands().get(0).getFestivals());
 	}
 }

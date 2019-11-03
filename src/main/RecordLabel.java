@@ -1,12 +1,14 @@
 package main;
 
+import java.util.ArrayList;
+
 public class RecordLabel {
 	public RecordLabel() {
 		
 	}
 	
 	private String name;
-	private Band[] bands;
+	private ArrayList<Band> bands;
 	
 	public String getName() {
 		return name;
@@ -14,10 +16,10 @@ public class RecordLabel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Band[] getBands() {
+	public ArrayList<Band> getBands() {
 		return bands;
 	}
-	public void setBands(Band[] bands) {
+	public void setBands(ArrayList<Band> bands) {
 		this.bands = bands;
 	}
 }

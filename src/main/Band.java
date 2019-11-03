@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Band {
 	
 	public Band() {
@@ -8,7 +10,7 @@ public class Band {
 	
 	private String name;
 	private String recordLabel;
-	private MusicFestival[] festivals;
+	private ArrayList<MusicFestival> festivals;
 	
 	public String getName() {
 		return name;
@@ -22,10 +24,10 @@ public class Band {
 	public void setRecordLabel(String recordLabel) {
 		this.recordLabel = recordLabel;
 	}
-	public MusicFestival[] getFestivals() {
+	public ArrayList<MusicFestival> getFestivals() {
 		return festivals;
 	}
-	public void setFestivals(MusicFestival[] festivals) {
+	public void setFestivals(ArrayList<MusicFestival> festivals) {
 		this.festivals = festivals;
 	}
 }

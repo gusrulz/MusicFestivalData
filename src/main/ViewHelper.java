@@ -16,7 +16,10 @@ public class ViewHelper {
 					sb.append("\t" + band.getName() + "\n");
 					if (band.getFestivals() != null) {
 						for (MusicFestival festival : band.getFestivals()) {
-							sb.append("\t\t" + festival.getName() + "\n");
+							String festivalName = festival.getName();
+							if (festivalName != null && !festivalName.equals("")) {
+								sb.append("\t\t" + festival.getName() + "\n");
+							}
 						}
 					}
 				}

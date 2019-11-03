@@ -1,29 +1,27 @@
 package main;
 
-import java.io.IOException;
-
 public class Application {
 	public static MusicFestival[] _musicFestivals;
 	public static RecordLabel[] _recordLabels;
 	
 	public static void main(String[] arguments) {
+		System.out.println("Calling Festival API...");
 		String json = ConnectionHelper.getResponse("http://eacodingtest.digital.energyaustralia.com.au/api/v1/festivals");
 		
 		if (json == null) {
 			System.out.println("Failed to download data. Exiting...");
 			return;
+		} else {
+			System.out.println("Successfully downloaded the following JSON payload:");
+			System.out.println(json);
 		}
 		
+		System.out.println("Parsing JSON...");
 		JsonHelper.parseJson(json);
 		
+		System.out.println("Displaying Data...");
 		ViewHelper.displayData();
 		
-		try {
-			System.out.print("Press any key to exit...");
-			System.in.read();
-		} catch (IOException e) {
-			System.out.println("An Unexpected error occurred. Exiting...");
-			return;
-		}
+		System.out.println("Exiting...");
 	}
 }
