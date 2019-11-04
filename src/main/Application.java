@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Application {
 	public static void main(String[] arguments) {
 		System.out.println("Calling Festival API...");
@@ -14,7 +16,7 @@ public class Application {
 		}
 		
 		System.out.println("Parsing JSON...");
-		RecordLabel[] labels = JsonHelper.parseJson(json);
+		ArrayList<RecordLabel> labels = JsonHelper.parseJson(json);
 		
 		System.out.println("Displaying Data...");
 		ViewHelper.displayData(labels);

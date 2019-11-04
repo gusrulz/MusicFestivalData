@@ -9,7 +9,7 @@ public class JsonHelper {
 	private static Gson g = new Gson();
 	
 	// Parses a json string and returns an array of RecordLabels
-	public static RecordLabel[] parseJson(String json) {
+	public static ArrayList<RecordLabel> parseJson(String json) {
 		MusicFestival[] musicFestivals = parseMusicFestivals(json);
 		return parseRecordLabels(musicFestivals);
 		
@@ -21,7 +21,7 @@ public class JsonHelper {
 	}
 	
 	//  Creates an Array of RecordLabels to display data in desired format
-	public static RecordLabel[] parseRecordLabels(MusicFestival[] festivals) {
+	public static ArrayList<RecordLabel> parseRecordLabels(MusicFestival[] festivals) {
 		// HashMap using RecordLabel name from the Band object to lookup RecordLabel objects already created 
 		HashMap<String, RecordLabel> recordLabels = new HashMap<String, RecordLabel>();
 		
@@ -52,6 +52,8 @@ public class JsonHelper {
 		}
 		
 		// Return HashMap values as an array of RecordLabels
-		return recordLabels.values().toArray(new RecordLabel[0]);
+		ArrayList<RecordLabel> labels = new ArrayList<RecordLabel>();
+		labels.addAll(recordLabels.values());
+		return labels;
 	}
 }

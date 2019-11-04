@@ -43,7 +43,9 @@ public class MusicFestivalTest {
 		RecordLabel label2 = new RecordLabel();
 		label2.setName("Record Label 2");
 		
-		RecordLabel[] labels = {label1, label2};
+		ArrayList<RecordLabel> labels = new ArrayList<RecordLabel>();
+		labels.add(label1);
+		labels.add(label2);
 		
 		Band bandA = new Band();
 		bandA.setName("Band A");
@@ -107,10 +109,10 @@ public class MusicFestivalTest {
 		omegaFestival.getBands().add(bandX);
 		
 		MusicFestival[] festivals = {alphaFestival, betaFestival, omegaFestival};
-		RecordLabel[] recordLabels = JsonHelper.parseRecordLabels(festivals);
+		ArrayList<RecordLabel> recordLabels = JsonHelper.parseRecordLabels(festivals);
 		
-		Assert.assertEquals(2, recordLabels.length);
-		Assert.assertNotNull(recordLabels[0].getBands());
-		Assert.assertNotNull(recordLabels[0].getBands().get(0).getFestivals());
+		Assert.assertEquals(2, recordLabels.size());
+		Assert.assertNotNull(recordLabels.get(0).getBands());
+		Assert.assertNotNull(recordLabels.get(0).getBands().get(0).getFestivals());
 	}
 }
