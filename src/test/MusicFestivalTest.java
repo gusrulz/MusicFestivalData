@@ -44,8 +44,8 @@ public class MusicFestivalTest {
 		label2.setName("Record Label 2");
 		
 		ArrayList<RecordLabel> labels = new ArrayList<RecordLabel>();
-		labels.add(label1);
 		labels.add(label2);
+		labels.add(label1);
 		
 		Band bandA = new Band();
 		bandA.setName("Band A");
@@ -62,22 +62,22 @@ public class MusicFestivalTest {
 		omegaFestival.setName("Omega Festival");
 		
 		ArrayList<Band> label1Bands = new ArrayList<Band>(); 
-		label1Bands.add(bandX);
 		label1Bands.add(bandY);
+		label1Bands.add(bandX);
 		label1.setBands(label1Bands);
 		
 		ArrayList<Band> label2Bands = new ArrayList<Band>();
 		label2Bands.add(bandA);
 		label2.setBands(label2Bands);
 		
+		ArrayList<MusicFestival> bandAFestivals = new ArrayList<MusicFestival>(); 
+		bandAFestivals.add(betaFestival);
+		bandAFestivals.add(alphaFestival);
+		bandA.setFestivals(bandAFestivals);
+		
 		ArrayList<MusicFestival> bandXFestivals = new ArrayList<MusicFestival>(); 
 		bandXFestivals.add(omegaFestival);
 		bandX.setFestivals(bandXFestivals);
-		
-		ArrayList<MusicFestival> bandAFestivals = new ArrayList<MusicFestival>(); 
-		bandAFestivals.add(alphaFestival);
-		bandAFestivals.add(betaFestival);
-		bandA.setFestivals(bandAFestivals);
 		
 		String output = ViewHelper.buildDisplay(labels);
 		Assert.assertEquals(EXPECTED, output);
