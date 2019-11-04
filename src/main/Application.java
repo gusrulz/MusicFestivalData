@@ -1,9 +1,6 @@
 package main;
 
 public class Application {
-	public static MusicFestival[] _musicFestivals;
-	public static RecordLabel[] _recordLabels;
-	
 	public static void main(String[] arguments) {
 		System.out.println("Calling Festival API...");
 		String json = ConnectionHelper.getResponse("http://eacodingtest.digital.energyaustralia.com.au/api/v1/festivals");
@@ -17,10 +14,10 @@ public class Application {
 		}
 		
 		System.out.println("Parsing JSON...");
-		JsonHelper.parseJson(json);
+		RecordLabel[] labels = JsonHelper.parseJson(json);
 		
 		System.out.println("Displaying Data...");
-		ViewHelper.displayData();
+		ViewHelper.displayData(labels);
 		
 		System.out.println("Exiting...");
 	}

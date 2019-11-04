@@ -8,17 +8,24 @@ import com.google.gson.*;
 public class JsonHelper {
 	private static Gson g = new Gson();
 	
-	public static void parseJson(String json) {
-		Application._musicFestivals = parseMusicFestivals(json);
-		Application._recordLabels = parseRecordLabels(Application._musicFestivals);
+	// Parses a json string and returns an array of RecordLabels
+	public static RecordLabel[] parseJson(String json) {
+		MusicFestival[] musicFestivals = parseMusicFestivals(json);
+		return parseRecordLabels(musicFestivals);
+		
 	}
 	
+	// Uses Gson library to parse the json to an array of MusicFestivals
 	public static MusicFestival[] parseMusicFestivals(String json) {
 		return g.fromJson(json, MusicFestival[].class);
 	}
 	
+	//  Creates an Array of RecordLabels to display data in desired format
 	public static RecordLabel[] parseRecordLabels(MusicFestival[] festivals) {
+		// HashMap using RecordLabel name from the Band object to lookup RecordLabel objects already created 
 		HashMap<String, RecordLabel> recordLabels = new HashMap<String, RecordLabel>();
+		
+		// Iterate over each festival and band to find any new RecordLabels
 		for (MusicFestival festival : festivals) {
 			if (festival.getBands() != null) {
 				for (Band band : festival.getBands()) {
@@ -28,6 +35,7 @@ public class JsonHelper {
 					band.getFestivals().add(festival);
 					String rlName = band.getRecordLabel();
 					if (rlName != null && !rlName.equals("")) {
+						// If the RecordLabel doesn't exist in the HashMap, create it
 						if (!recordLabels.containsKey(rlName)) {
 							RecordLabel rl = new RecordLabel();
 							rl.setBands(new ArrayList<Band>());
@@ -43,6 +51,7 @@ public class JsonHelper {
 			}
 		}
 		
+		// Return HashMap values as an array of RecordLabels
 		return recordLabels.values().toArray(new RecordLabel[0]);
 	}
 }

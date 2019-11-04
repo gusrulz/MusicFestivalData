@@ -1,12 +1,16 @@
 package main;
 
 public class ViewHelper {
-	public static void displayData() {
-		RecordLabel[] labels = Application._recordLabels;
-		
+	
+	// Prints the desired output
+	public static void displayData(RecordLabel[] labels) {
 		System.out.println(buildDisplay(labels));
 	}
 	
+	// Iterates over each RecordLabel and appends the data to a StringBuilder in the format:
+	// RecordLabel
+	// 		Band
+	// 			Festival
 	public static String buildDisplay(RecordLabel[] labels) {
 		StringBuilder sb = new StringBuilder();
 		for (RecordLabel label : labels) {
@@ -25,6 +29,7 @@ public class ViewHelper {
 				}
 			}
 		}
+		
 		return sb.toString();
 	}
 }
